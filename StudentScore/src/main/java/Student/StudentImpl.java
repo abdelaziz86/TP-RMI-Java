@@ -38,17 +38,22 @@ public class StudentImpl extends UnicastRemoteObject implements StudentInterface
 
     @Override
     public double calculate_average() throws RemoteException {
+        System.out.println("calculate_average");
+        if (exams.isEmpty()) {
+            return 0.0; // No exams, return 0
+        }
+
         double totalScore = 0.0;
         double totalCoefficient = 0.0;
+
         for (Exam exam : exams) {
             totalScore += exam.getScore() * exam.getCoefficient();
             totalCoefficient += exam.getCoefficient();
         }
-        if (totalCoefficient == 0.0) {
-            return 0.0; // Avoid division by zero
-        }
+
         return totalScore / totalCoefficient;
     }
+
 
 
 

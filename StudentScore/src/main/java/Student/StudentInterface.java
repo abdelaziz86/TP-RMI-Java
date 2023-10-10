@@ -9,4 +9,5 @@ public interface StudentInterface extends Remote {
     double calculate_average() throws RemoteException;
     String getId() throws RemoteException;
 
+
 }

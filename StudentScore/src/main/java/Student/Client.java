@@ -1,29 +1,34 @@
 package Student;
 
+import Server.ServerInterface;
+
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.rmi.RemoteException;
 
 public class Client {
     public static void main(String[] args) {
         try {
+            // Locate the RMI registry running on the server
             Registry registry = LocateRegistry.getRegistry("localhost", 1099); // Replace "localhost" with the server's hostname
-            PromotionInterface promotion = (PromotionInterface) registry.lookup("PromotionService");
 
-            // Add exams for students
-            promotion.get_student("123").add_exam("Math", 90, 0.5);
-            promotion.get_student("123").add_exam("History", 85, 0.3);
-            promotion.get_student("456").add_exam("Math", 95, 0.6);
-            promotion.get_student("456").add_exam("History", 88, 0.4);
+            // Lookup the remote object by name
+            ServerInterface server = (ServerInterface) registry.lookup("RemoteObjectName");
 
-            // Calculate and print the average scores
-            System.out.println("John's average score: " + promotion.get_student("123").calculate_average());
-            System.out.println("Alice's average score: " + promotion.get_student("456").calculate_average());
+            // Call the remote methods
+            server.add_student("123", "John", 20);
+            server.get_student("123").add_exam("Math", 90.0, 0.5);
+            server.get_student("123").add_exam("Science", 85.0, 0.5);
 
-            // Calculate and print the promotion average score
-            System.out.println("Promotion's average score: " + promotion.promotion_score());
+
+            server.add_student("456", "Alice", 22);
+            server.get_student("456").add_exam("Math", 88.0, 0.4);
+            server.get_student("456").add_exam("Science", 92.0, 0.6);
+ 
+            double promotionScore = server.promotion_score();
+            System.out.println("Promotion Score: " + promotionScore);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 }
+
