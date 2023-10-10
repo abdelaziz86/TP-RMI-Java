@@ -1,4 +1,4 @@
-package Student;
+package Client;
 
 import Server.ServerInterface;
 
@@ -23,7 +23,7 @@ public class Client {
             server.add_student("456", "Alice", 22);
             server.get_student("456").add_exam("Math", 88.0, 0.4);
             server.get_student("456").add_exam("Science", 92.0, 0.6);
- 
+
             double promotionScore = server.promotion_score();
             System.out.println("Promotion Score: " + promotionScore);
         } catch (Exception e) {

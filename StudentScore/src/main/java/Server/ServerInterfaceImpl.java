@@ -1,6 +1,5 @@
 package Server;
-import Student.StudentImpl;
-import Student.StudentInterface;
+import Client.StudentInterface;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;

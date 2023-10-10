@@ -1,4 +1,4 @@
-package Student;
+package Server;
 
 import java.io.Serializable;
 
