@@ -8,6 +8,9 @@ import java.util.Map;
 public class PromotionImpl extends UnicastRemoteObject implements PromotionInterface {
     private Map<String, StudentInterface> students = new HashMap<>();
 
+    public PromotionImpl() throws RemoteException {
+    }
+
     @Override
     public void add_student(String studentId, String name, int age) throws RemoteException {
         StudentInterface student = new StudentImpl(name, age, studentId);
