@@ -2,7 +2,7 @@ package Server;
 
 import java.io.Serializable;
 
-public class Exam implements Serializable {
+public class Exam implements Serializable  {
     private String name;
     private double score;
     private double coefficient;
